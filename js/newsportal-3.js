@@ -40,7 +40,6 @@ const showAllNews = (id1, name1) =>{
     document.getElementById('news-count').innerText= id1.length;
   // get id and dynamic of category-name
     document.getElementById('category-name').innerText= name1;
-
 }
 
 
