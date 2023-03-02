@@ -44,7 +44,7 @@ const fetchCategoryNews = (id, name) => {
 }
 
 const showAllNews = (id1, name1) => {
-    // console.log(id1, name1)
+    console.log(id1, name1)
     // get id and dynamic of news-count
     document.getElementById('news-count').innerText = id1.length;
     // get id and dynamic of category-name
@@ -177,7 +177,9 @@ setInnerHtml.innerHTML= `
 
 /*__________ Show Trending data with click btn ________ */ 
 const showTrending = () =>{
-console.log(fetchData);
+// console.log(fetchData);
+// call showAllNews
+showAllNews(fetchData, "random");
 }
 /*__________ Show Trending data with click btn ________ */ 
 
