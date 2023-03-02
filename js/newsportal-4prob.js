@@ -16,7 +16,7 @@ const showCategories = (datas) => {
 
         // step-2
         const linkContainer = document.createElement('p');
-        linkContainer.innerHTML += `
+        linkContainer.innerHTML = `
  <a  class='text-decoration-none text-black' onclick="fetchCategoryNews('${singleData.category_id}','${singleData.category_name}' )">${singleData.category_name}</a>
  `;
         // step-3
@@ -45,7 +45,7 @@ const showAllNews = (id1, name1) => {
     parent2.innerHTML = '';
     // for singleNews apply forEach arrow function
     id1.forEach(singleNews => {
-        console.log(singleNews.rating.number)
+        // console.log(singleNews._id)
 
         // step-2
         const newDiv2 = document.createElement('div');
@@ -86,8 +86,7 @@ const showAllNews = (id1, name1) => {
         </div>
         
         <div>
-        <i class="fas fa-arrow-right" onclick="fetchNewsDetail()" data-bs-toggle="modal"
-        data-bs-target="#exampleModal"></i>
+        <i class="fas fa-arrow-right" onclick="fetchNewsDetail('${singleNews._id}')" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
         </div>
         </p>
     </div>
@@ -98,6 +97,32 @@ const showAllNews = (id1, name1) => {
         `;
         parent2.appendChild(newDiv2)
     })
+};
+
+// clickRightArrow showDetails
+const fetchNewsDetail= (newId) =>{
+    // console.log('kaj hosee too')
+    // console.log(new_id)
+    let url=`  https://openapi.programming-hero.com/api/news/${newId} `
+    fetch(url)
+    .then(res => res.json())
+    .then(data => {
+        // call showFetchNewsDetail
+        showFetchNewsDetail(data.data[0])
+    });
+
+const showFetchNewsDetail = newsDtail =>{
+    console.log(newsDtail.author.name)
+}
+
+const setInnerHtml= document.getElementById('modal-body');
+setInnerHtml.innerHTML= `
+<div>
+<h4> Hellooo Dedax: ${newsDtail.author.name ? newsDtail.author.name : "Not available" }</h4> 
+
+</div>
+`;
+
 }
 
 
